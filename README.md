@@ -18,7 +18,7 @@ feedback eval function
   4. set month milestone
   5. set 6 month milestone
   6. set yearly milestone
-2. 
+2. at each milestone we should check our OKR and summarize 
 
 
 
