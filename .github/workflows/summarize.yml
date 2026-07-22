@@ -1,0 +1,25 @@
+name: Summarize work
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # every 6 hours from 00:00 UTC
+  workflow_dispatch: # manual trigger for testing
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Summarize recent activity and create report issue
+        run: python scripts/summarize.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
